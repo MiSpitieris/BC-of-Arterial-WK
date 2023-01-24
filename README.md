@@ -1,2 +1,1 @@
-# BC_of_Arterial_WK
-Bayesian calibration of the arterial windkessel model
+This repo contains the code of the paper "Bayesian calibration of arterial windkessel model"
