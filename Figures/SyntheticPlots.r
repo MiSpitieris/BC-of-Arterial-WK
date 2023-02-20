@@ -1,6 +1,6 @@
 library(coda); library(bayestestR); library(ggplot2); library(ggpubr)
 theme_set(theme_classic())
-setwd("/Volumes/michais/Documents/PaperGithub/Codes/Figures/")
+
 results = readRDS("results.rds")
 dsynth = results$synthOpt
 mod1 = results$synthetic$setup1
@@ -226,8 +226,6 @@ plC2 = ggplot(dfC2, aes(x = C, y = ..density..))+
   geom_density(col = "black", size = 1, alpha = 0.6, fill = cols[2]) + 
   geom_point(data = Cest2, aes(x=C, y=y), size = 2, shape = sh)+
   geom_vline(aes(xintercept = Cr2),size=0.5, colour = "black") +
-  #scale_shape_manual(values=shape)+
-  #scale_linetype_manual(name = "real value", values = c(real = 1))+
   xlim(0.5,3)+ ylim(0,16) + 
   theme(legend.position = "none",
         axis.text.y = element_blank(),
@@ -303,8 +301,6 @@ joint1 = ggplot(setup1Joint) +
   geom_point(aes(x = R, y = C, color = density), size = 0.05) + 
   scale_color_distiller(palette= "Spectral")+
   geom_point(data = realRC1, aes(x = R, y=C), col = "red", size = 3,shape=23)+
-  #geom_point(data = map1,  aes(x = R, y = C), shape = 1)+
-  #geom_point(data = mean1,  aes(x = R, y = C), shape = 2)+
   theme(legend.position = c(0.8,0.8)
         ,legend.key.height = unit(0.35, 'cm')
         ,legend.key.width  = unit(0.35, 'cm')
