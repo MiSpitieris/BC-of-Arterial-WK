@@ -35,12 +35,6 @@ names(mod4)[4] = "Rtrue"
 names(mod4)[5] = "Ctrue"
 names(mod4)[6] = "Ztrue"
 
-# resultsAll = results
-# resultsAll$synthetic$setup1 = mod1
-# resultsAll$synthetic$setup2 = mod2
-# resultsAll$synthetic$setup3 = mod3
-#resultsAll$synthetic$setup4 = mod4
-#saveRDS(resultsAll, "/Volumes/michais/Documents/PaperGithub/Codes/Figures/results.rds")
 # R = R1 (= Ztrue) + R2 (= R)
 Rr1 = mod1$Rtrue + mod1$Ztrue
 Rr2 = mod2$Rtrue + mod2$Ztrue
@@ -159,43 +153,34 @@ plR2 = ggplot(dfR2, aes(x = R, y = ..density..))+
   geom_density(col = "black", size = 1, alpha = 0.6, fill = cols[2]) + 
   geom_point(data = Rest2, aes(x=R, y=y), size = 2, shape = sh)+
   geom_vline(aes(xintercept = Rr2),size=0.5, colour = "black") +
-  #scale_shape_manual(values=shape)+
-  #scale_linetype_manual(name = "real value", values = c(real = 1))+
   xlim(0.5,3)+ ylim(0,16) + 
   theme(legend.position = "none",
         axis.text.y = element_blank(),
         axis.title.x = element_blank(),
         axis.title.y = element_blank(),
         axis.ticks.y = element_blank()) 
-#+ggtitle("Setup 2")
 
 plR3 = ggplot(dfR3, aes(x = R, y = ..density..))+
   geom_density(col = "black", size = 1, alpha = 0.6, fill = cols[3]) + 
   geom_point(data = Rest3, aes(x=R, y=y), size = 2, shape = sh)+
   geom_vline(aes(xintercept = Rr3),size=0.5, colour = "black") +
-  #scale_shape_manual(values=shape)+
-  #scale_linetype_manual(name = "real value", values = c(real = 1))+
   xlim(0.5,3)+ ylim(0,16) +
   theme(legend.position = "none",
         axis.text.y = element_blank(),
         axis.title.x = element_blank(),
         axis.title.y = element_blank(),
         axis.ticks.y = element_blank())
-#+ggtitle("Setup 3")
 
 plR4 = ggplot(dfR4, aes(x = R, y = ..density..))+
   geom_density(col = "black", size = 1, alpha = 0.6, fill = cols[4]) + 
   geom_point(data = Rest4, aes(x=R, y=y), size = 2, shape = sh)+
   geom_vline(aes(xintercept = Rr4),size=0.5, colour = "black") +
-  #scale_shape_manual(values=shape)+
-  #scale_linetype_manual(name = "real value", values = c(real = 1))+
   xlim(0.5,3) + ylim(0,16) +
   theme(#legend.position = "none",
     axis.text.y = element_blank(),
     axis.title.x = element_blank(),
     axis.title.y = element_blank(),
     axis.ticks.y = element_blank())
-#+ggtitle("Setup 4")
 
 Rmarg = ggarrange(plR1, plR2, plR3, plR4, ncol = 1)
 
@@ -227,8 +212,6 @@ plC1 = ggplot(dfC1, aes(x = C, y = ..density..))+
   geom_density(col = "black", size = 1, alpha = 0.6, fill = cols[1]) + 
   geom_point(data = Cest1, aes(x=C, y=y), size = 2, shape = sh)+
   geom_vline(aes(xintercept = Cr1),size=0.5, colour = "black") +
-  #scale_shape_manual(values=shape)+
-  #scale_linetype_manual(name = "real value", values = c(real = 1))+
   xlim(0.5,3)+ ylim(0,16) +
   theme(legend.position = "none",
         axis.text.y = element_blank(),
@@ -257,8 +240,6 @@ plC3 = ggplot(dfC3, aes(x = C, y = ..density..))+
   geom_density(col = "black", size = 1, alpha = 0.6, fill = cols[3]) + 
   geom_point(data = Cest3, aes(x=C, y=y), size = 2, shape = sh)+
   geom_vline(aes(xintercept = Cr3),size=0.5, colour = "black") +
-  #scale_shape_manual(values=shape)+
-  #scale_linetype_manual(name = "real value", values = c(real = 1))+
   xlim(0.5,3)+ ylim(0,16) +
   theme(legend.position = "none",
         axis.text.y = element_blank(),
@@ -271,8 +252,6 @@ plC4 = ggplot(dfC4, aes(x = C, y = ..density..))+
   geom_density(col = "black", size = 1, alpha = 0.6, fill = cols[4]) + 
   geom_point(data = Cest4, aes(x=C, y=y), size = 2, shape = sh)+
   geom_vline(aes(xintercept = Cr4),size=0.5, colour = "black") +
-  #scale_shape_manual(values=shape)+
-  #scale_linetype_manual(name = "real value", values = c(real = 1))+
   xlim(0.5,3) + ylim(0,16) +
   theme(#legend.position = "none",
     axis.text.y = element_blank(),
@@ -283,7 +262,6 @@ plC4 = ggplot(dfC4, aes(x = C, y = ..density..))+
 Cmarg = ggarrange(plC1, plC2, plC3, plC4, ncol = 1)
 RCmarg = ggarrange(Rmarg, Cmarg, ncol = 2)
 
-#ggarrange(Rmarg, Cmarg, nrow=2)
 # Joint densities
 get_density <- function(x, y, ...) {# https://slowkow.com/notes/ggplot2-color-by-density/
   dens <- MASS::kde2d(x, y, ...)
@@ -292,7 +270,7 @@ get_density <- function(x, y, ...) {# https://slowkow.com/notes/ggplot2-color-by
   ii <- cbind(ix, iy)
   return(dens$z[ii])
 }
-#library(viridis)
+
 setup1Joint = data.frame(R = dfR1$R, C = dfC1$C)
 setup1Joint$density = get_density(setup1Joint$R, setup1Joint$C, n = 2*1e3)
 
@@ -350,7 +328,7 @@ joint2 = ggplot(setup2Joint) +
   xlim(0.5,3)+
   ylim(0.5,3) +annotate("text", x = 2.5, y = 1, label = "Setup 2")
 
-#col2 = c("real" = "red")
+
 #joint3
 joint3 = ggplot(setup3Joint) + 
   geom_point(aes(x = R, y = C, color = density), size = 0.05) + 
@@ -859,13 +837,8 @@ Bias_plot2= ggplot()+
   geom_line(data = bias2, aes(x = time, y = bias, colour = "Setup 2"), size =1)+
   geom_line(data = bias3, aes(x = time, y = bias, colour = "Setup 3"), size =1)+
   geom_line(data = bias4, aes(x = time, y = bias, colour = "Setup 4"), size =1)+
-  #geom_point(data = data1, aes(x = time, y = pressure), colour = "#1B9E77")+
-  #geom_point(data = data2, aes(x = time, y = pressure), colour = "#E41A1C")+
-  #geom_point(data = data3, aes(x = time, y = pressure), colour = "#377EB8")+
   scale_color_manual(name = "Bias", values = cols)+
   theme_classic(base_size = 8) +
-  # ylab("bias")+
-  # ylim(...) +
   theme(legend.position = "none",
         legend.title = element_blank(),
         legend.text = element_text(size = 8),
