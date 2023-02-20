@@ -1,8 +1,3 @@
-# mod1 = readRDS("/Volumes/michais/Documents/PaperGithub/Codes/Synthetic/model1.rds")
-# mod2 = readRDS("/Volumes/michais/Documents/PaperGithub/Codes/Synthetic/model2.rds")
-# mod3 = readRDS("/Volumes/michais/Documents/PaperGithub/Codes/Synthetic/model3.rds")
-# mod4 = readRDS("/Volumes/michais/Documents/PaperGithub/Codes/Synthetic/model4.rds")
-
 library(coda); library(bayestestR); library(ggplot2); library(ggpubr)
 theme_set(theme_classic())
 setwd("/Volumes/michais/Documents/PaperGithub/Codes/Figures/")
