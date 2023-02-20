@@ -34,7 +34,7 @@ meanC = mean(dfC$C)
 #meanR = c(meanR1, meanR2, meanR3)
 colhist = "slategray4"
 
-# Marginal posteriors densities
+# Marginal densities
 histR = ggplot(dfR, aes(x = R))+
   geom_histogram(bins = 50, color=colhist, fill=colhist)+
   theme(axis.title.y=element_blank(),
@@ -208,9 +208,6 @@ RealCase = plAll
 
 # Create tables
 histR + scale_x_discrete(position = "top", breaks = c(1.00,1.25,1.50,1.75))
-# library(cowplot)
-# ggdraw(switch_axis_position(histR + axis = 'R'))
-# hR = histR+ scale_x_continuous(sec.axis = dup_axis()) 
 
 #ggsave("RealCase.pdf", width = 15, height = 6, units = "cm")
 RealCase1 = pl2
